@@ -1,4 +1,4 @@
-module zxyxy/capital-agent
+module capital-agent
 
 go 1.19
 
