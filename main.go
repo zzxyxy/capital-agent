@@ -2,6 +2,7 @@ package main
 
 import (
 	connection "capital-agent/connection"
+	"fmt"
 
 	"go.uber.org/zap"
 )
@@ -16,11 +17,14 @@ var log *zap.Logger
 func main() {
 	log, _ = zap.NewDevelopment()
 
-	conn := connection.GetConnection(
+	_, err := connection.GetConnection(
 		IDENTIFIER,
 		PASSWORD,
 		URL,
 		XCAPAPIKEY,
 	)
-	conn.Open()
+
+	if err != nil {
+		log.Error(fmt.Sprintf("connection error: %s", err.Error()))
+	}
 }
